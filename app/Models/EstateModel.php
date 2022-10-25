@@ -30,5 +30,9 @@ class EstateModel extends Model
         return $district['area'];
     }
 
+    public static function getById($id){
+        return self::where('id', $id)->get()->toArray();
+    }
+
 
 }

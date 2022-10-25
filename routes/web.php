@@ -6,6 +6,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\EstateController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\LandController;
+use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\RealtorController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,10 @@ Route::post("/lands/load", [LandController::class, 'loadFromFile']);
 Route::get("/estate/getAllEstate", [EstateController::class, 'getAllEstate']);
 Route::get("/estate/SearchByAddress", [EstateController::class, 'SearchEstateByAddress']);
 Route::get("/estate/SearchByDistrict", [EstateController::class, 'SearchEstateByDistrict']);
+
+Route::get("/proposal/getApartmentsProposal", [ProposalController::class, 'getApartmentsProposal']);
+Route::get("/proposal/getHousesProposal", [ProposalController::class, 'getHousesProposal']);
+Route::get("/proposal/getLandsProposal", [ProposalController::class, 'getLandsProposal']);
+Route::get("/proposal/delete", [ProposalController::class, 'deleteProposal']);
+Route::post("/proposal/create", [ProposalController::class, 'createProposal']);
+Route::post("/proposal/update", [ProposalController::class, 'updateProposal']);
