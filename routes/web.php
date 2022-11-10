@@ -41,3 +41,9 @@ Route::get("/proposal/getLandsProposal", [ProposalController::class, 'getLandsPr
 Route::get("/proposal/delete", [ProposalController::class, 'deleteProposal']);
 Route::post("/proposal/create", [ProposalController::class, 'createProposal']);
 Route::post("/proposal/update", [ProposalController::class, 'updateProposal']);
+
+Route::get("/clients/getClientsProposal", [ClientController::class, "getClientsProposal"]);
+Route::get("/clients/getClientsRequirements", [ClientController::class, "getClientsRequirements"]);
+
+Route::get("/realtors/getRealtorProposal", [RealtorController::class, "getRealtorProposal"]);
+Route::get("/realtors/getRealtorRequirements", [RealtorController::class, "getRealtorRequirements"]);

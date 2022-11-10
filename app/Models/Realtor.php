@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Realtor extends Model
 {
@@ -73,6 +74,14 @@ class Realtor extends Model
                 ]);
             }
         }
+    }
+
+    public static function getRealtorRequirements($id){
+        return DB::table('requirements')->where("realtor_id", $id)->get()->toArray();
+    }
+
+    public static function getRealtorProposals($id){
+        return DB::table('proposals')->where("realtor", $id)->get()->toArray();
     }
 
 }

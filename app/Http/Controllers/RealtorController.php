@@ -50,4 +50,12 @@ class RealtorController extends Controller
         return ['ok' => 'done'];
     }
 
+    public function getRealtorProposal(Request $request){
+        return Realtor::getRealtorProposals($request['id']);
+    }
+
+    public function getRealtorRequirements(Request $request){
+        return Realtor::getRealtorRequirements($request['id']);
+    }
+
 }

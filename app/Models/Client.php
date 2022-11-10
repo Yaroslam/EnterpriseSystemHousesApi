@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Client extends Model
 {
@@ -79,4 +80,11 @@ class Client extends Model
         }
     }
 
+    public static function getClientRequirements($id){
+        return DB::table('requirements')->where("client_id", $id)->get()->toArray();
+    }
+
+    public static function getClientProposals($id){
+        return DB::table('proposals')->where("client", $id)->get()->toArray();
+    }
 }

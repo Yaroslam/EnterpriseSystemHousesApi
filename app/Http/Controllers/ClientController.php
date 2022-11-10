@@ -53,4 +53,12 @@ class ClientController extends Controller
         return ['ok' => 'done'];
     }
 
+    public function getClientsProposal(Request $request){
+        return Client::getClientProposals($request['id']);
+    }
+
+    public function getClientsRequirements(Request $request){
+        return Client::getClientRequirements($request['id']);
+    }
+
 }
