@@ -20,7 +20,6 @@ class EstateController extends Controller
         $houses = House::SearchByAddress($request['city'], $request['street'], $request['house'], $request['number']);
         $lands = Land::SearchByAddress($request['city'], $request['street'], $request['house'], $request['number']);
         return ["Houses" => $houses, "Apartments" => $apartments, "Land" => $lands];
-//        return ["Apartments" => $apartments];
     }
 
     public function SearchEstateByDistrict(Request $request){
@@ -70,19 +69,35 @@ class EstateController extends Controller
     }
 
     public function deleteEstate(Request $request){
+        $responseData = [];
+        $responseCode = 200;
         if($request['type'] == "houses"){
-            House::deleteHouse($request['id']);
+            if(!House::deleteHouse($request['id'])){
+                $responseCode = 400;
+                $responseData = ["errors" => "house ".$request['id']." in proposal"];
+            }
         } elseif ($request['type'] == "lands"){
-            Land::deleteLand($request['id']);
+            if(!Land::deleteLand($request['id'])){
+                $responseCode = 400;
+                $responseData = ["errors" => "land ".$request['id']." in proposal"];
+            }
         } elseif ($request['type'] == 'apartments'){
-            Apartment::deleteApartment($request['id']);
+            if(!Apartment::deleteApartment($request['id'])){
+                $responseCode = 400;
+                $responseData = ["errors" => "apartment ".$request['id']." in proposal"];
+            }
+        }
+        return Response($responseData, $responseCode);
+    }
+
+    public function updateEstate(Request $request){
+        if($request['type'] == "houses"){
+            House::editHouse($request['id'],$request);
+        } elseif ($request['type'] == "lands"){
+            Land::editLand($request['id'],$request);
+        } elseif ($request['type'] == 'apartments'){
+            Apartment::editApartment($request['id'],$request);
         }
     }
-
-    public function updateEstate(){
-
-    }
-
-
 
 }

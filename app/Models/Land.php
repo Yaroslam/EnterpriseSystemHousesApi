@@ -60,4 +60,16 @@ class Land extends EstateModel
             return true;
         }
     }
+
+    public static function editLand($id, $data){
+        self::where('id', $id)->update([
+            "Address_City" => $data["Address_City"],
+            "Address_Street"  => $data["Address_Street"],
+            "Address_House" => $data["Address_House"],
+            "Address_Number" => $data["Address_Number"],
+            "Coordinate_latitude" => $data["Coordinate_latitude"],
+            "Coordinate_longitude" => $data["Coordinate_longitude"],
+            "TotalArea" => $data["TotalArea"],
+        ]);
+    }
 }

@@ -19,7 +19,7 @@ class House extends EstateModel
             "Address_Number" => $data["Address_Number"],
             "Coordinate_latitude" => $data["Coordinate_latitude"],
             "Coordinate_longitude" => $data["Coordinate_longitude"],
-            "TotalFloor" => $data["TotalFloor"],
+            "TotalFloors" => $data["TotalFloor"],
             "TotalArea" => $data["TotalArea"],
         ]);
     }
@@ -33,8 +33,17 @@ class House extends EstateModel
         }
     }
 
-    public static function updateHouse($id, $data){
-
+    public static function editHouse($id, $data){
+        self::where('id', $id)->update([
+            "Address_City" => $data["Address_City"],
+            "Address_Street"  => $data["Address_Street"],
+            "Address_House" => $data["Address_House"],
+            "Address_Number" => $data["Address_Number"],
+            "Coordinate_latitude" => $data["Coordinate_latitude"],
+            "Coordinate_longitude" => $data["Coordinate_longitude"],
+            "TotalFloors" => $data["TotalFloors"],
+            "TotalArea" => $data["TotalArea"],
+        ]);
     }
 
     public static function loadFromCSV($csv){
