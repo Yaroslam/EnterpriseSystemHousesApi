@@ -26,8 +26,11 @@ class RealtorController extends Controller
     }
 
     public function deleteRealtor(Request $request){
-        Realtor::deleteRealtor($request['id']);
-        return Response([], 200);
+        if(Realtor::deleteRealtor($request['id'])){
+            return Response([], 200);
+        } else {
+            return Response(["errors" => "realtor in proposal or in requirement"], 400);
+        }
     }
 
     public function editRealtor(Request $request){

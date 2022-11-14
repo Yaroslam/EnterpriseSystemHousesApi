@@ -30,7 +30,12 @@ class Realtor extends Model
     }
 
     public static function deleteRealtor($id){
-        self::where("id", $id)->delete();
+        if(count(self::getRealtorProposals($id)) >= 1 || count(self::getRealtorRequirements($id)) >= 1){
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
+        }
     }
 
     public static function updateRealtor($id ,$name, $surname, $secondName, $part){

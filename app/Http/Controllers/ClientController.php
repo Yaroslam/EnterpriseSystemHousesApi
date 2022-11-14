@@ -28,8 +28,11 @@ class ClientController extends Controller
     }
 
     public function deleteClient(Request $request){
-        Client::deleteClient($request['id']);
-        return Response([], 200);
+        if(Client::deleteClient($request['id'])){
+            return Response([], 200);
+        } else {
+            return Response(["errors" => "client in proposal or in requirement"], 400);
+        }
     }
 
     public function editClient(Request $request){

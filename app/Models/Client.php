@@ -32,7 +32,12 @@ class Client extends Model
     }
 
     public static function deleteClient($id){
-        self::where("id", $id)->delete();
+        if(count(self::getClientRequirements($id)) >= 1 || count(self::getClientProposals($id)) >= 1){
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
+        }
     }
 
     public static function updateClient($id ,$name, $surname, $secondName, $phoneNumber, $email){
