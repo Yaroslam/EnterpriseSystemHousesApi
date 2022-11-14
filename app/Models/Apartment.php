@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Apartment extends EstateModel
 {
@@ -39,7 +40,12 @@ class Apartment extends EstateModel
     }
 
     public static function deleteApartment($id){
-        self::where("id", $id)->delete();
+        if (count(DB::table("proposals_apartments")->where("apartment_id", $id)->get()->toArray()) >= 1) {
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
+        }
     }
 
     public static function editApartment($id,$data){
@@ -77,6 +83,8 @@ class Apartment extends EstateModel
             }
         }
     }
+
+
 
 
 }

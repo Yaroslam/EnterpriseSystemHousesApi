@@ -4,21 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class House extends EstateModel
 {
     use HasFactory;
 
-    public static function getAllHouses(){
-        return self::all()->toArray();
-    }
 
     public static function createHouse($data){
-
+        self::insert([
+            "Address_City" => $data["Address_City"],
+            "Address_Street"  => $data["Address_Street"],
+            "Address_House" => $data["Address_House"],
+            "Address_Number" => $data["Address_Number"],
+            "Coordinate_latitude" => $data["Coordinate_latitude"],
+            "Coordinate_longitude" => $data["Coordinate_longitude"],
+            "TotalFloor" => $data["TotalFloor"],
+            "TotalArea" => $data["TotalArea"],
+        ]);
     }
 
     public static function deleteHouse($id){
-        self::where("id", $id)->delete();
+        if (count(DB::table("proposals_houses")->where("house_id", $id)->get()->toArray()) >= 1) {
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
+        }
     }
 
     public static function updateHouse($id, $data){

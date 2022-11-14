@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Land extends EstateModel
 {
@@ -18,11 +19,6 @@ class Land extends EstateModel
         'TotalArea',
     ];
     public $timestamps = false;
-
-
-    public static function getAllLands(){
-        return self::all()->toArray();
-    }
 
     public static function loadFromCSV($csv){
         foreach ($csv as $line){
@@ -41,6 +37,27 @@ class Land extends EstateModel
                     "TotalArea" => floatval($data[7]),
                 ]);
             }
+        }
+    }
+
+    public static function createLand($data){
+        self::insert([
+            "Address_City" => $data["Address_City"],
+            "Address_Street"  => $data["Address_Street"],
+            "Address_House" => $data["Address_House"],
+            "Address_Number" => $data["Address_Number"],
+            "Coordinate_latitude" => $data["Coordinate_latitude"],
+            "Coordinate_longitude" => $data["Coordinate_longitude"],
+            "TotalArea" => $data["TotalArea"],
+        ]);
+    }
+
+    public static function deleteLand($id){
+        if (count(DB::table("proposals_lands")->where("land_id", $id)->get()->toArray()) >= 1) {
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
         }
     }
 }

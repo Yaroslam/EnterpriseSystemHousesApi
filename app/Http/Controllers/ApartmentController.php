@@ -15,4 +15,25 @@ class ApartmentController extends Controller
         Apartment::loadFromCSV($csvFile);
         return ['ok' => 'done'];
     }
+
+
+    public function createApartment(Request $request){
+
+    }
+
+    public function deleteApartment(Request $request){
+
+    }
+
+    public function editApartment(Request $request){
+
+    }
+    
+
+
+
+
+
+
+
 }

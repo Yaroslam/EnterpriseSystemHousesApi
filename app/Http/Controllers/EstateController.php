@@ -59,12 +59,24 @@ class EstateController extends Controller
         return $res;
     }
 
-    public function createEstate(){
-
+    public function createEstate(Request $request){
+        if($request['type'] == "houses"){
+            House::createHouse($request);
+        } elseif ($request['type'] == "lands"){
+            Land::createLand($request);
+        } elseif ($request['type'] == 'apartments'){
+            Apartment::createApartment($request);
+        }
     }
 
-    public function deleteEstate(){
-
+    public function deleteEstate(Request $request){
+        if($request['type'] == "houses"){
+            House::deleteHouse($request['id']);
+        } elseif ($request['type'] == "lands"){
+            Land::deleteLand($request['id']);
+        } elseif ($request['type'] == 'apartments'){
+            Apartment::deleteApartment($request['id']);
+        }
     }
 
     public function updateEstate(){

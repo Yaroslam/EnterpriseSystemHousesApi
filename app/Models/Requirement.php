@@ -45,8 +45,7 @@ class Requirement extends Model
 
     public static function editRequirement($id,$type, $realtor_id, $client_id, $min_price, $max_price, $min_square, $max_square,
                                     $min_rooms, $max_rooms, $max_floor, $min_floor, $address){
-        self::where("id", $id)->update(
-            [
+        self::where("id", $id)->update([
                 "estate_type" => $type,
                 "realtor_id" => $realtor_id,
                 "client_id" => $client_id,
