@@ -11,10 +11,7 @@ use Illuminate\Http\Resources\DelegatesToResource;
 
 class DealController extends Controller
 {
-//    TODO
-//      посмотреть как возвращается пустая доля у риэлтора
-//
-//
+
     public function createDeal(Request $request){
         $responseCode = 200;
         $responseData = [];
