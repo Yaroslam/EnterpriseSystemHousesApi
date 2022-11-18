@@ -17,19 +17,6 @@ class ApartmentController extends Controller
     }
 
 
-    public function createApartment(Request $request){
-
-    }
-
-    public function deleteApartment(Request $request){
-
-    }
-
-    public function editApartment(Request $request){
-
-    }
-    
-
 
 
 
