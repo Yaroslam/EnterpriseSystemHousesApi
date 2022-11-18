@@ -20,6 +20,10 @@ class Realtor extends Model
 
 
 
+    public static function getById($id){
+        return self::where("id", $id)->get()->toArray()[0];
+    }
+
     public static function addRealtor($name, $surname, $secondName, $part){
         self::insert([
             'name' => $name,

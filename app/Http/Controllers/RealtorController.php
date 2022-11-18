@@ -61,4 +61,8 @@ class RealtorController extends Controller
         return Realtor::getRealtorRequirements($request['id']);
     }
 
+    public function getById(Request $request){
+        return Realtor::getById($request['id']);
+    }
+
 }
