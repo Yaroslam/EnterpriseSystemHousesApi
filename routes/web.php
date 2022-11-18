@@ -31,6 +31,7 @@ Route::get('/', function () {
 Route::prefix("/clients")->group(function () {
     Route::post("/load", [ClientController::class, 'loadFromFile']);
     Route::get("/getClientsProposal", [ClientController::class, "getClientsProposal"]);
+    Route::get("/getClientsRequirements", [ClientController::class, "getClientsRequirements"]);
     Route::get("/findClient", [ClientController::class, "findClient"]);
     Route::get("/getAllClients", [ClientController::class, "getAllClients"]);
     Route::post("/editClient", [ClientController::class, "editClient"]);
