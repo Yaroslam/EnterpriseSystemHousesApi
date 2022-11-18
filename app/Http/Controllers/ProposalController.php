@@ -58,8 +58,8 @@ class ProposalController extends Controller
         return $res;
     }
 
-    public function findProposalForRequirements(){
-
+    public function findProposalForRequirements(Request $request){
+        Proposal::findProposalForRequirement($request["requirementId"]);
     }
 
 
