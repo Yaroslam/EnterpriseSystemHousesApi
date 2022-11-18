@@ -40,7 +40,12 @@ Route::prefix("/clients")->group(function () {
 
 Route::prefix("/realtors")->group(function () {
     Route::post("/load", [RealtorController::class, 'loadFromFile']);
-    Route::get("/get", [RealtorController::class, 'getById']);
+    Route::post("/addRealtor", [RealtorController::class, 'addRealtor']);
+    Route::get("/deleteRealtor", [RealtorController::class, 'deleteRealtor']);
+    Route::post("/editRealtor", [RealtorController::class, 'editRealtor']);
+    Route::get("/getAllRealtors", [RealtorController::class, 'getAllRealtors']);
+    Route::get("/findRealtor", [RealtorController::class, 'findRealtor']);
+    Route::get("/getRealtor", [RealtorController::class, 'getById']);
     Route::get("/getRealtorProposal", [RealtorController::class, "getRealtorProposal"]);
     Route::get("/getRealtorRequirements", [RealtorController::class, "getRealtorRequirements"]);
 });
@@ -66,6 +71,9 @@ Route::prefix("/estate")->group(function () {
     Route::get("/getAllEstate", [EstateController::class, 'getAllEstate']);
     Route::get("/SearchByAddress", [EstateController::class, 'SearchEstateByAddress']);
     Route::get("/SearchByDistrict", [EstateController::class, 'SearchEstateByDistrict']);
+    Route::post("/createEstate", [EstateController::class, 'createEstate']);
+    Route::get("/deleteEstate", [EstateController::class, 'deleteEstate']);
+    Route::post("/updateEstate", [EstateController::class, 'updateEstate']);
 });
 
 Route::prefix("/proposal")->group(function (){
