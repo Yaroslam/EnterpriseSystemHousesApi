@@ -62,6 +62,67 @@ class Requirement extends Model
         );
     }
 
+    public static function deleteRequirement($id){
+        $requirement  = self::where("id", $id);
+        if(count(DB::table("deal_".$requirement->estate_type)->where("requirement_id", $id)->get()->toArray()) > 0){
+            return false;
+        } else {
+            self::where("id", $id)->delete();
+            return true;
+        }
+    }
+
+    public static function getRequirement($id){
+        return self::where("id", $id)->get()->toArray()[0];
+    }
+
+    public static function getAll(){
+        return self::all()->toArray();
+    }
+
+    public static function findRequirementForProposal($proposalId, $typedProposalId, $type){
+        $res = [];
+        $proposal = Proposal::getById($proposalId);
+        $requirements = self::getAll();
+        $typedProposal = Proposal::getTypeProposalById($typedProposalId, $type);
+        foreach ($requirements as $requirement){
+            if($type == "houses"){
+                if($proposal['price'] >= $requirement['min_price'] && $proposal['price'] <= $requirement['max_price']){
+                    $estate = House::getById($typedProposal['house_id'])[0];
+                    if($estate['TotalArea'] <= $requirement['max_square'] && $estate['TotalArea'] >= $requirement['min_square']){
+                        if($estate['TotalFloors'] <= $requirement['max_floor'] && $estate['TotalFloors'] >= $requirement['min_floor']){
+                           $res[] = $requirement;
+                        }
+                    }
+                }
+            } else if ($type == "apartments"){
+                if($proposal['price'] >= $requirement['min_price'] && $proposal['price'] <= $requirement['max_price']){
+                    $estate = Apartment::getById($typedProposal['apartment_id'])[0];
+                    if($estate['TotalArea'] <= $requirement['max_square'] && $estate['TotalArea'] >= $requirement['min_square']){
+                        if($estate['Rooms'] <= $requirement['max_rooms'] && $estate['Rooms'] >= $requirement['min_rooms']) {
+                            if ($estate['Floor'] <= $requirement['max_floor'] && $estate['Floor'] >= $requirement['min_floor']) {
+                                $res[] = $requirement;
+                            }
+                        }
+                    }
+                }
+            } else if ($type == 'lands'){
+                if($proposal['price'] >= $requirement['min_price'] && $proposal['price'] <= $requirement['max_price']){
+                    $estate = Land::getById($typedProposal['land_id'])[0];
+                    if($estate['TotalArea'] <= $requirement['max_square'] && $estate['TotalArea'] >= $requirement['min_square']){
+                        $res[] = $requirement;
+                    }
+                }
+            }
+
+        }
+        return $res;
+    }
+
+    public static function getById($id){
+        return self::where("id", $id)->get()->toArray()[0];
+    }
+
 
 
 }

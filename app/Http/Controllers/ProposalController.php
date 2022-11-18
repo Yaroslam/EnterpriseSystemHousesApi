@@ -58,9 +58,19 @@ class ProposalController extends Controller
         return $res;
     }
 
+    public function findProposalForRequirements(){
+
+    }
+
 
     public function deleteProposal(Request $request){
-        Proposal::deleteProposal($request['proposal_id'], "proposals_".$request['type']);
+        $responseCode = 200;
+        $responseData = [];
+        if(!Proposal::deleteProposal($request['proposal_id'], "proposals_".$request['type'])){
+            $responseData = ['error' => "proposal in deal"];
+            $responseCode = 400;
+        }
+        return Response($responseData, $responseCode);
     }
 
     public function createProposal(Request $request){

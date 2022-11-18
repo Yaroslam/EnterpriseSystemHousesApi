@@ -10,25 +10,41 @@ class Deal extends Model
 {
     use HasFactory;
 
-    public function createDeal($proposalId, $requirementsId, $type){
-        DB::table("deal_".$type)->insert([
-            "proposal_id" => $proposalId,
-            "requirement_id" => $requirementsId
-        ]);
+    public static function createDeal($proposalId, $requirementsId, $type){
+        $requirement = Requirement::getRequirement($requirementsId);
+        $proposal = Proposal::getById($proposalId);
+
+        if($proposal['use'] || $requirement['use']){
+            return false;
+        } else {
+            DB::table("deal_".$type)->insert([
+                "proposal_id" => $proposalId,
+                "requirement_id" => $requirementsId
+            ]);
+            return true;
+        }
     }
 
-    public function deleteDeal($dealId, $type){
+    public static function deleteDeal($dealId, $type){
         DB::table("deal_".$type)->where("id", $dealId)->delete();
     }
 
-    public function editDeal($dealId, $proposalId, $requirementsId, $type){
-        DB::table("deal_".$type)->where("id", $dealId)->update([
-            "proposal_id" => $proposalId,
-            "requirement_id" => $requirementsId
-        ]);
+    public static function editDeal($dealId, $proposalId, $requirementsId, $type){
+        $requirement = Requirement::getRequirement($requirementsId);
+        $proposal = Proposal::getById($proposalId);
+
+        if($proposal['use'] || $requirement['use']){
+            return false;
+        } else {
+            DB::table("deal_".$type)->where("id", $dealId)->update([
+                "proposal_id" => $proposalId,
+                "requirement_id" => $requirementsId
+            ]);
+            return true;
+        }
     }
 
-    public function getAllDeal($type){
+    public static function getAllDeal($type){
         return DB::table("deal_".$type)->all()->toArray();
     }
 
