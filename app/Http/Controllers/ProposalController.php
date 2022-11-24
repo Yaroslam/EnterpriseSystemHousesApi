@@ -21,7 +21,7 @@ class ProposalController extends Controller
             $apartment['type'] = "apartment";
             $apartmentProposal = Proposal::getById($proposal->proposal_id);
             $prop['estate'] = $apartment;
-            $prop['proposal'] =  $apartmentProposal[0];
+            $prop['proposal'] =  $apartmentProposal;
             $res[] = $prop;
         }
         return $res;
@@ -36,7 +36,7 @@ class ProposalController extends Controller
             $apartment['type'] = "house";
             $apartmentProposal = Proposal::getById($proposal->proposal_id);
             $prop['estate'] = $apartment;
-            $prop['proposal'] =  $apartmentProposal[0];
+            $prop['proposal'] =  $apartmentProposal;
             $res[] = $prop;
         }
         return $res;
@@ -52,7 +52,7 @@ class ProposalController extends Controller
             $apartment['type'] = "land";
             $apartmentProposal = Proposal::getById($proposal->proposal_id);
             $prop['estate'] = $apartment;
-            $prop['proposal'] =  $apartmentProposal[0];
+            $prop['proposal'] =  $apartmentProposal;
             $res[] = $prop;
         }
         return $res;

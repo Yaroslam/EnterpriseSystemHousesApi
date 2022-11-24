@@ -15,4 +15,8 @@ class DistrictController extends Controller
         District::loadFromCSV($csvFile);
         return ['ok' => 'done'];
     }
+
+    public function getAll(){
+        return District::getAll();
+    }
 }

@@ -22,8 +22,8 @@ class ClientController extends Controller
         if ($validator->fails()) {
             return  Response($validator->errors(), 400);
         }
-
-        Client::addClient($request['name'], $request['surname'], $request['secondName'], $request['phoneNumber'], $request['email']);
+        $id = Client::all()->last()->id;
+        Client::addClient($id, $request['name'], $request['surname'], $request['secondName'], $request['phoneNumber'], $request['email']);
         return Response([], 200);
     }
 
@@ -45,7 +45,7 @@ class ClientController extends Controller
     }
 
     public function findClient(Request $request){
-        return Client::findClient($request['name'], $request['surname'], $request['secondName']);
+        return Client::findRealtor($request['name'], $request['surname'], $request['secondName']);
 
     }
 

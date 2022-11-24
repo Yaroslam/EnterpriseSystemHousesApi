@@ -41,7 +41,9 @@ class Land extends EstateModel
     }
 
     public static function createLand($data){
+        $id = self::all()->last()->id;
         self::insert([
+            "id" => $id+1,
             "Address_City" => $data["Address_City"],
             "Address_Street"  => $data["Address_Street"],
             "Address_House" => $data["Address_House"],

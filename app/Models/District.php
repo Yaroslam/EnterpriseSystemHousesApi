@@ -24,6 +24,10 @@ class District extends Model
         }
     }
 
+    public static function getAll(){
+        return self::all()->toArray();
+    }
+
     public static function getDistrictByName($name){
         return self::where("name", $name)->get()->toArray();
     }

@@ -29,24 +29,24 @@ Route::get('/', function () {
 
 
 Route::prefix("/clients")->group(function () {
-    Route::post("/load", [ClientController::class, 'loadFromFile']);
+//    Route::post("/load", [ClientController::class, 'loadFromFile']);
     Route::get("/getClientsProposal", [ClientController::class, "getClientsProposal"]);
     Route::get("/getClientsRequirements", [ClientController::class, "getClientsRequirements"]);
-    Route::get("/findClient", [ClientController::class, "findClient"]);
-    Route::get("/getAllClients", [ClientController::class, "getAllClients"]);
+//    Route::get("/findClient", [ClientController::class, "findClient"]);
+//    Route::get("/getAllClients", [ClientController::class, "getAllClients"]);
     Route::post("/editClient", [ClientController::class, "editClient"]);
-    Route::get("/deleteClient", [ClientController::class, "deleteClient"]);
-    Route::post("/addClient", [ClientController::class, "addClient"]);
+//    Route::get("/deleteClient", [ClientController::class, "deleteClient"]);
+//    Route::post("/addClient", [ClientController::class, "addClient"]);
 });
 
 Route::prefix("/realtors")->group(function () {
     Route::post("/load", [RealtorController::class, 'loadFromFile']);
-    Route::post("/addRealtor", [RealtorController::class, 'addRealtor']);
-    Route::get("/deleteRealtor", [RealtorController::class, 'deleteRealtor']);
-    Route::post("/editRealtor", [RealtorController::class, 'editRealtor']);
-    Route::get("/getAllRealtors", [RealtorController::class, 'getAllRealtors']);
-    Route::get("/findRealtor", [RealtorController::class, 'findRealtor']);
-    Route::get("/getRealtor", [RealtorController::class, 'getById']);
+//    Route::post("/addRealtor", [RealtorController::class, 'addRealtor']);
+//    Route::get("/deleteRealtor", [RealtorController::class, 'deleteRealtor']);
+//    Route::post("/editRealtor", [RealtorController::class, 'editRealtor']);
+//    Route::get("/getAllRealtors", [RealtorController::class, 'getAllRealtors']);
+//    Route::get("/findRealtor", [RealtorController::class, 'findRealtor']);
+//    Route::get("/getRealtor", [RealtorController::class, 'getById']);
     Route::get("/getRealtorProposal", [RealtorController::class, "getRealtorProposal"]);
     Route::get("/getRealtorRequirements", [RealtorController::class, "getRealtorRequirements"]);
 });
@@ -58,6 +58,7 @@ Route::prefix("/apartment")->group(function (){
 
 Route::prefix("/district")->group(function (){
     Route::post("/load", [DistrictController::class, 'loadFromFile']);
+    Route::get("/getAll", [DistrictController::class, 'getAll']);
 });
 
 Route::prefix("houses")->group(function () {
@@ -69,18 +70,18 @@ Route::prefix("/lands")->group(function () {
 });
 
 Route::prefix("/estate")->group(function () {
-    Route::get("/getAllEstate", [EstateController::class, 'getAllEstate']);
-    Route::get("/SearchByAddress", [EstateController::class, 'SearchEstateByAddress']);
-    Route::get("/SearchByDistrict", [EstateController::class, 'SearchEstateByDistrict']);
-    Route::post("/createEstate", [EstateController::class, 'createEstate']);
-    Route::get("/deleteEstate", [EstateController::class, 'deleteEstate']);
-    Route::post("/updateEstate", [EstateController::class, 'updateEstate']);
+//    Route::get("/getAllEstate", [EstateController::class, 'getAllEstate']);
+//    Route::get("/SearchByAddress", [EstateController::class, 'SearchEstateByAddress']);
+//    Route::get("/SearchByDistrict", [EstateController::class, 'SearchEstateByDistrict']);
+//    Route::post("/createEstate", [EstateController::class, 'createEstate']);
+//    Route::get("/deleteEstate", [EstateController::class, 'deleteEstate']);
+//    Route::post("/updateEstate", [EstateController::class, 'updateEstate']);
 });
 
 Route::prefix("/proposal")->group(function (){
-    Route::get("/getApartmentsProposal", [ProposalController::class, 'getApartmentsProposal']);
-    Route::get("/getHousesProposal", [ProposalController::class, 'getHousesProposal']);
-    Route::get("/getLandsProposal", [ProposalController::class, 'getLandsProposal']);
+//    Route::get("/getApartmentsProposal", [ProposalController::class, 'getApartmentsProposal']);
+//    Route::get("/getHousesProposal", [ProposalController::class, 'getHousesProposal']);
+//    Route::get("/getLandsProposal", [ProposalController::class, 'getLandsProposal']);
     Route::get("/delete", [ProposalController::class, 'deleteProposal']);
     Route::post("/create", [ProposalController::class, 'createProposal']);
     Route::post("/update", [ProposalController::class, 'updateProposal']);

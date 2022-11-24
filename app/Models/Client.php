@@ -21,8 +21,9 @@ class Client extends Model
 
 
 
-    public static function addClient($name, $surname, $secondName, $phoneNumber, $email){
+    public static function addClient($id ,$name, $surname, $secondName, $phoneNumber, $email){
         self::insert([
+            'id' => $id+1,
             'name' => $name,
             'surname' => $surname,
             'secondName' => $secondName,
@@ -56,7 +57,7 @@ class Client extends Model
         return self::all()->toArray();
     }
 
-    public static function findClient($name, $surname, $secondName){
+    public static function findRealtor($name, $surname, $secondName){
         $res = [];
         $realtors = self::all()->toArray();
         foreach ($realtors as $realtor){
@@ -78,7 +79,7 @@ class Client extends Model
                   "name" => trim($data[1]),
                   "surname" => trim($data[2]),
                   "secondName" => trim($data[3]),
-                  "telephoneNumber" => trim($data[5]),
+                  "telephoneNumber" => trim($data[4]),
                   "email" => trim($data[5])
               ]);
             }
