@@ -82,8 +82,8 @@ Route::prefix("/proposal")->group(function (){
 //    Route::get("/getApartmentsProposal", [ProposalController::class, 'getApartmentsProposal']);
 //    Route::get("/getHousesProposal", [ProposalController::class, 'getHousesProposal']);
 //    Route::get("/getLandsProposal", [ProposalController::class, 'getLandsProposal']);
-    Route::get("/delete", [ProposalController::class, 'deleteProposal']);
-    Route::post("/create", [ProposalController::class, 'createProposal']);
+//    Route::get("/delete", [ProposalController::class, 'deleteProposal']);
+//    Route::post("/create", [ProposalController::class, 'createProposal']);
     Route::post("/update", [ProposalController::class, 'updateProposal']);
     Route::get("/findProposalForRequirements", [ProposalController::class, 'findProposalForRequirements']);
 
