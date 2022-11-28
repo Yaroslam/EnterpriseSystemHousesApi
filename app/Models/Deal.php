@@ -18,7 +18,7 @@ class Deal extends Model
             return false;
         } else {
 
-            DB::table("proposal")->where("id", $proposalId)->update(['use' => 1]);
+            DB::table("proposals")->where("id", $proposalId)->update(['use' => 1]);
             DB::table("requirements")->where("id", $requirementsId)->update(['use' => 1]);
 
             DB::table("deal_".$type)->insert([
@@ -31,6 +31,7 @@ class Deal extends Model
 
     public static function deleteDeal($dealId, $type){
         $deal = DB::table("deal_".$type)->where("id", $dealId)->get()->toArray()[0];
+        $deal = json_decode(json_encode($deal), true);
         $proposalId = $deal['proposal_id'];
         $requirementId = $deal['requirement_id'];
         DB::table("proposals")->where("id", $proposalId)->update(['use' => 0]);
@@ -45,6 +46,11 @@ class Deal extends Model
         if($proposal['use'] || $requirement['use']){
             return false;
         } else {
+
+            #TODO
+            # поставить старые пропосал и реквайрементс в 0
+            DB::table("proposals")->where("id", $proposalId)->update(['use' => 1]);
+            DB::table("requirements")->where("id", $requirementsId)->update(['use' => 1]);
             DB::table("deal_".$type)->where("id", $dealId)->update([
                 "proposal_id" => $proposalId,
                 "requirement_id" => $requirementsId
@@ -54,7 +60,7 @@ class Deal extends Model
     }
 
     public static function getAllDeal($type){
-        return DB::table("deal_".$type)->all()->toArray();
+        return DB::table("deal_".$type)->get()->toArray();
     }
 
 
