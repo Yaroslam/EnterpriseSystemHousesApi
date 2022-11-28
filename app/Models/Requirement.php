@@ -26,45 +26,52 @@ class Requirement extends Model
     public $timestamps = false;
 
     public static function createRequirement($type, $realtor_id, $client_id, $min_price, $max_price, $min_square, $max_square,
-                                        $min_rooms, $max_rooms, $max_floor, $min_floor, $address){
+                                        $min_rooms, $max_rooms, $max_floor, $min_floor, $addres_street, $addres_city, $addres_house, $addres_number){
         $id = self::insertGetId([
+            "use" => 0,
+            "estate_type" => $type,
             "realtor_id" => $realtor_id,
             "client_id" => $client_id,
-            "estate_type" => $type,
             "min_price" => $min_price,
-            "max_prince" => $max_price,
+            "max_price" => $max_price,
             "min_square" => $min_square,
             "max_square" => $max_square,
             "min_rooms" => $min_rooms,
             "max_rooms" => $max_rooms,
             "max_floor" => $min_floor,
             "min_floor" => $max_floor,
-            "address" => $address
+            "addres_street" => $addres_street,
+            "addres_city" => $addres_city,
+            "addres_house" => $addres_house,
+            "addres_number" => $addres_number
         ]);
     }
 
     public static function editRequirement($id,$type, $realtor_id, $client_id, $min_price, $max_price, $min_square, $max_square,
-                                    $min_rooms, $max_rooms, $max_floor, $min_floor, $address){
+                                    $min_rooms, $max_rooms, $max_floor, $min_floor, $addres_street, $addres_city, $addres_house, $addres_number){
         self::where("id", $id)->update([
                 "estate_type" => $type,
                 "realtor_id" => $realtor_id,
                 "client_id" => $client_id,
                 "min_price" => $min_price,
-                "max_prince" => $max_price,
+                "max_price" => $max_price,
                 "min_square" => $min_square,
                 "max_square" => $max_square,
                 "min_rooms" => $min_rooms,
                 "max_rooms" => $max_rooms,
                 "max_floor" => $min_floor,
                 "min_floor" => $max_floor,
-                "address" => $address
+                "addres_street" => $addres_street,
+                "addres_city" => $addres_city,
+                "addres_house" => $addres_house,
+                "addres_number" => $addres_number
             ]
         );
     }
 
     public static function deleteRequirement($id){
-        $requirement  = self::where("id", $id);
-        if(count(DB::table("deal_".$requirement->estate_type)->where("requirement_id", $id)->get()->toArray()) > 0){
+        $requirement  = self::where("id", $id)->get()->toArray()[0];
+        if(count(DB::table("deal_".$requirement["estate_type"])->where("requirement_id", $id)->get()->toArray()) > 0){
             return false;
         } else {
             self::where("id", $id)->delete();

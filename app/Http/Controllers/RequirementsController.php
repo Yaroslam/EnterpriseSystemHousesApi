@@ -11,9 +11,9 @@ class RequirementsController extends Controller
         Requirement::createRequirement($request['type'], $request['realtor_id'], $request['client_id'],
             $request['min_price'], $request['max_price'], $request['min_square'],
             $request['max_square'], $request['min_rooms'], $request['max_rooms'],
-            $request['max_floor'], $request['min_floor'], $request['address']);
+            $request['max_floor'], $request['min_floor'], $request['addres_street'], $request['addres_city'],
+            $request['addres_house'], $request['addres_number']);
     }
-
     public function deleteRequirements(Request $request){
         $responseCode = 200;
         $responseData = [];
@@ -28,7 +28,8 @@ class RequirementsController extends Controller
         Requirement::editRequirement($request['id'],$request['type'], $request['realtor_id'], $request['client_id'],
             $request['min_price'], $request['max_price'], $request['min_square'],
             $request['max_square'], $request['min_rooms'], $request['max_rooms'],
-            $request['max_floor'], $request['min_floor'], $request['address']);
+            $request['max_floor'], $request['min_floor'], $request['addres_street'], $request['addres_city'],
+            $request['addres_house'], $request['addres_number']);
     }
 
     public function findRequirementForProposal(Request $request){

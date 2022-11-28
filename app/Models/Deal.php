@@ -18,8 +18,8 @@ class Deal extends Model
             return false;
         } else {
 
-            DB::table("proposal")->where("id", $proposalId)->update(['use' => true]);
-            DB::table("requirements")->where("id", $requirementsId)->update(['use' => true]);
+            DB::table("proposal")->where("id", $proposalId)->update(['use' => 1]);
+            DB::table("requirements")->where("id", $requirementsId)->update(['use' => 1]);
 
             DB::table("deal_".$type)->insert([
                 "proposal_id" => $proposalId,
@@ -30,6 +30,11 @@ class Deal extends Model
     }
 
     public static function deleteDeal($dealId, $type){
+        $deal = DB::table("deal_".$type)->where("id", $dealId)->get()->toArray()[0];
+        $proposalId = $deal['proposal_id'];
+        $requirementId = $deal['requirement_id'];
+        DB::table("proposals")->where("id", $proposalId)->update(['use' => 0]);
+        DB::table("requirements")->where("id", $requirementId)->update(['use' => 0]);
         DB::table("deal_".$type)->where("id", $dealId)->delete();
     }
 
