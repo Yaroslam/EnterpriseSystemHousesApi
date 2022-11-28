@@ -17,6 +17,10 @@ class Deal extends Model
         if($proposal['use'] || $requirement['use']){
             return false;
         } else {
+
+            DB::table("proposal")->where("id", $proposalId)->update(['use' => true]);
+            DB::table("requirements")->where("id", $requirementsId)->update(['use' => true]);
+
             DB::table("deal_".$type)->insert([
                 "proposal_id" => $proposalId,
                 "requirement_id" => $requirementsId

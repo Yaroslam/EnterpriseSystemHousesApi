@@ -98,7 +98,7 @@ Route::prefix("/requirements")->group(function (){
 
 Route::prefix("/deal")->group(function (){
     Route::post("/createDeal", [DealController::class, "createDeal"]);
-    Route::post('editDeal', [DealController::class, "editDeal"]);
-    Route::get("deleteDeal", [DealController::class, "deleteDeal"]);
-    Route::get("getAllDeals", [DealController::class, "getAllDeal"]);
+    Route::post('/editDeal', [DealController::class, "editDeal"]);
+    Route::get("/deleteDeal", [DealController::class, "deleteDeal"]);
+    Route::get("/getAllDeals", [DealController::class, "getAllDeal"]);
 });

@@ -85,6 +85,7 @@ class Requirement extends Model
         $proposal = Proposal::getById($proposalId);
         $requirements = self::getAll();
         $typedProposal = Proposal::getTypeProposalById($typedProposalId, $type);
+        $typedProposal = json_decode(json_encode($typedProposal), true);
         foreach ($requirements as $requirement){
             if($type == "houses"){
                 if($proposal['price'] >= $requirement['min_price'] && $proposal['price'] <= $requirement['max_price']){
