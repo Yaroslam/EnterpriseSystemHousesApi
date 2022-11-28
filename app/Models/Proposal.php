@@ -90,6 +90,7 @@ class Proposal extends Model
         $requirement = Requirement::getById($requirementId);
         $estateType = $requirement['estate_type'];
 
+
         if ($estateType == "houses") {
             $proposals = self::HousesProposals();
         } else if ($estateType == "lands") {
@@ -98,7 +99,9 @@ class Proposal extends Model
             $proposals = self::ApartmentsProposals();
         }
 
+
         foreach ($proposals as $proposal) {
+            $proposal = json_decode(json_encode($proposal), true);
             if ($estateType == "houses") {
                 $basicProposal = self::getById($proposal['proposal_id']);
                 $estate = House::getById($proposal['house_id'])[0];
@@ -123,12 +126,11 @@ class Proposal extends Model
             } else if ($estateType == 'apartments') {
                 $basicProposal = self::getById($proposal['proposal_id']);
                 $estate = Apartment::getById($proposal['apartment_id'])[0];
-
                 if ($basicProposal['price'] >= $requirement['min_price'] && $basicProposal['price'] <= $requirement['max_price']) {
                     if ($estate['TotalArea'] <= $requirement['max_square'] && $estate['TotalArea'] >= $requirement['min_square']) {
                         if ($estate['Rooms'] <= $requirement['max_rooms'] && $estate['Rooms'] >= $requirement['min_rooms']) {
                             if ($estate['Floor'] <= $requirement['max_floor'] && $estate['Floor'] >= $requirement['min_floor']) {
-                                $res[] = $requirement;
+                                $res[] = $basicProposal;
                             }
                         }
                     }

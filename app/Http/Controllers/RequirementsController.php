@@ -33,7 +33,11 @@ class RequirementsController extends Controller
     }
 
     public function findRequirementForProposal(Request $request){
-        return Requirement::findRequirementForProposal($request['proposalId'], $request['typedProposalId'], $request['type']);
+        return Requirement::findRequirementForProposal($request['proposalId'], $request['type']);
+    }
+
+    public function getAll(){
+        return Requirement::getAll();
     }
 
 

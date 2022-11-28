@@ -90,7 +90,7 @@ Route::prefix("/proposal")->group(function (){
 });
 
 Route::prefix("/requirements")->group(function (){
-//    Route::get("/getAllRequirements", [RequirementsController::class, "getAll"]);
+    Route::get("/getAllRequirements", [RequirementsController::class, "getAll"]);
     Route::post("/createRequirement", [RequirementsController::class, "createRequirements"]);
     Route::get("/deleteRequirement", [RequirementsController::class, "deleteRequirements"]);
     Route::post("/editRequirement", [RequirementsController::class, "editRequirements"]);

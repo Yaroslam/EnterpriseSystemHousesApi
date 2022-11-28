@@ -87,11 +87,11 @@ class Requirement extends Model
         return self::all()->toArray();
     }
 
-    public static function findRequirementForProposal($proposalId, $typedProposalId, $type){
+    public static function findRequirementForProposal($proposalId, $type){
         $res = [];
         $proposal = Proposal::getById($proposalId);
         $requirements = self::getAll();
-        $typedProposal = Proposal::getTypeProposalById($typedProposalId, $type);
+        $typedProposal = Proposal::getTypeProposalById($proposalId, $type);
         $typedProposal = json_decode(json_encode($typedProposal), true);
         foreach ($requirements as $requirement){
             if($type == "houses"){
