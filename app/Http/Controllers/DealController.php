@@ -8,6 +8,7 @@ use App\Models\Realtor;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\DelegatesToResource;
+use Illuminate\Support\Facades\DB;
 
 class DealController extends Controller
 {

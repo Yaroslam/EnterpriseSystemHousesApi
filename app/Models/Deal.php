@@ -46,10 +46,11 @@ class Deal extends Model
         if($proposal['use'] || $requirement['use']){
             return false;
         } else {
-
-            #TODO
-            # поставить старые пропосал и реквайрементс в 0
+            $deal = DB::table("deal_".$type)->where("id", $dealId)->get()->toArray();
+            $deal = json_decode(json_encode($deal), true);
+            DB::table("proposals")->where("id", $deal[0]['proposal_id'])->update(['use' => 0]);
             DB::table("proposals")->where("id", $proposalId)->update(['use' => 1]);
+            DB::table("requirements")->where("id", $deal[0]['requirement_id'])->update(['use' => 0]);
             DB::table("requirements")->where("id", $requirementsId)->update(['use' => 1]);
             DB::table("deal_".$type)->where("id", $dealId)->update([
                 "proposal_id" => $proposalId,
