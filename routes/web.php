@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\EstateController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\LandController;
 use App\Http\Controllers\ProposalController;
@@ -102,4 +103,10 @@ Route::prefix("/deal")->group(function (){
     Route::post('/editDeal', [DealController::class, "editDeal"]);
     Route::get("/deleteDeal", [DealController::class, "deleteDeal"]);
     Route::get("/getAllDeals", [DealController::class, "getAllDeal"]);
+});
+
+Route::prefix("/event")->group(function (){
+    Route::post("/createEvent", [EventController::class, "createEvent"]);
+    Route::get("/getEventsBetween", [EventController::class, "getEventsBetween"]);
+    Route::get("/deleteEvent", [EventController::class, "deleteEvent"]);
 });
