@@ -34,7 +34,7 @@ class RealtorController extends Controller
     }
 
     public function editRealtor(Request $request){
-        Realtor::updateRealtor($request['id'], $request['name'], $request['surname'], $request['secondName'], $request['phoneNumber'], $request['email']);
+        Realtor::updateRealtor($request['id'], $request['name'], $request['surname'], $request['secondName'], $request['part']);
         return Response([], 200);
     }
 
