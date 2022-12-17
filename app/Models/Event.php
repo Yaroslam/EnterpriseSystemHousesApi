@@ -27,8 +27,8 @@ class Event extends Model
         return DB::table("events")->where("id", $id)->get()->toArray()[0];
     }
 
-    public static function getEventsBetweenDates($startDate, $endDate){
-        return DB::table("events")->whereBetween("datetime", [$startDate, $endDate])->get()->toArray();
+    public static function getEventsBetweenDates($startDate, $endDate, $realtorId){
+        return DB::table("events")->where("agent_id", $realtorId)->whereBetween("datetime", [$startDate, $endDate])->get()->toArray();
     }
 
     public static function canselEvent($id){

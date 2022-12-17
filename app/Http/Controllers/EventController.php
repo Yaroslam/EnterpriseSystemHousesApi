@@ -24,7 +24,7 @@ class EventController extends Controller
     }
 
     public function getEventsBetween(Request $request){
-        return Event::getEventsBetweenDates(date("Y-m-d H:i:s", $request['startDate']), date("Y-m-d H:i:s", $request['endDate']));
+        return Event::getEventsBetweenDates(date("Y-m-d H:i:s", $request['startDate']), date("Y-m-d H:i:s", $request['endDate']), $request['realtorId']);
     }
 
     public function deleteEvent(Request $request){
